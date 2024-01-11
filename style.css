@@ -37,6 +37,10 @@
     fill: var(--color-light);
 }
 
+#template {
+    display: none;
+}
+
 .book--list,
 .book--cards {
     width: min(100%, 1100px);
