@@ -35,5 +35,29 @@
             </div>
         </div>
     </main>
+    <dialog id="addBook" >
+        <form class="addBook-form" method="dialog">
+            <h2 class="addBook-title">Add a book</h2>
+            <label class="addBook-titleLabel">
+                <input type="text" class="addBook-input" name="title" placeholder=" " required>
+                <span>Title</span>
+            </label>
+            <label class="addBook-authorLabel">
+                <input type="text" class="addBook-input" name="author" placeholder=" " required>
+                <span>Author</span>
+            </label>
+            <label class="addBook-nbPagesLabel">
+                <input type="number" class="addBook-input" name="nb-pages" placeholder=" " min="1" step="1" required>
+                <span>Number of Pages</span>
+            </label>
+            <label class="addBook-readStatusLabel">
+                <span>Read: </span>
+                <input type="checkbox" class="addBook-input" name="read-status">
+            </label>
+            <button class="addBook-button">Submit</button>
+        </form>
+    </dialog>
+
+
 </body>
 </html>

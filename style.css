@@ -37,6 +37,118 @@
     fill: var(--color-light);
 }
 
+#addBook {
+    width: min(1200px, 80%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border: var(--color-secondary) 1px solid;
+    border-radius: 8px;
+    padding: 48px 32px;
+}
+
+.addBook-form {
+    display: grid;
+    grid-template-columns: 400px auto;
+    grid-template-areas: 
+        "title title"
+        "titleLabel titleLabel"
+        "author author"
+        "nbPages readStatus"
+        "button button";
+    gap: 24px 32px;
+}
+
+.addBook-title {
+    font-size: 3rem;
+    color: var(--color-primary);
+    border-bottom: var(--color-secondary) 5px solid;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    grid-area: title;
+}
+
+label {
+    position: relative;
+}
+
+.addBook-titleLabel {
+    grid-area: titleLabel;
+}
+
+.addBook-authorLabel {
+    grid-area: author;
+}
+
+.addBook-nbPagesLabel {
+    grid-area: nbPages;
+}
+
+.addBook-readStatusLabel {
+    grid-area: readStatus;
+}
+
+.addBook-button {
+    grid-area: button;
+}
+
+.addBook-input:not([type="checkbox"]) {
+    height: 50px;
+    font-size: 1.5rem;
+    padding-left: 12px;
+    padding-top: 12px;
+}
+
+.addBook-input[type="text"] {
+    width: 600px;
+}
+
+.addBook-input[type="number"] {
+    width: 400px;
+}
+
+.addBook-input:not([type="checkbox"]) ~ span {
+    position: absolute;
+    top: 4px;
+    left: 12px;
+    font-size: 1.8rem;
+    opacity: 0.5;
+    transition: opacity 100ms ease-in,
+                top 100ms ease-in,
+                left 100ms ease-in,
+                font-size 100ms ease-in;
+}
+
+.addBook-input:not([type="checkbox"]):is(:focus, :not(:placeholder-shown)) ~ span {
+    top: -12px;
+    left: -3px;
+    font-size: 1.2rem;
+    opacity: 1;
+    background-color: white;
+}
+
+.addBook-readStatusLabel > span {
+    font-size: 1.8rem;
+}
+
+.addBook-input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
+
+.addBook-button {
+    width: 400px;
+    height: 50px;
+    font-size: 1.8rem;
+    margin-top: 32px;
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    border: var(--color-primary) 2px solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 #template {
     display: none;
 }
