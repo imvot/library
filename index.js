@@ -44,8 +44,14 @@ class Book {
         }.bind(this);
         readStatusCheckbox.addEventListener("change", changeChecked);
 
+        const deleteButton = newBook.querySelector(".book-itemClose > button");
+        const deleteBook = function() {
+            this.delete(); 
+        }.bind(this);
+        deleteButton.addEventListener("click", deleteBook);
+
         main.appendChild(newBook);
-        this.update()
+        this.update();
     }
 
     update() {
@@ -58,5 +64,11 @@ class Book {
         nbPages.innerText = `${this.nbPages} pages`;
         const readStatus = book.querySelector(".book-itemStatus");
         readStatus.innerText = this.isRead ? "Read" : "Not Read"
+    }
+
+    delete() {
+        const book = document.getElementById(this.id);
+        main.removeChild(book);
+        delete library[this.id];
     }
 }

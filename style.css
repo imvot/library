@@ -242,3 +242,8 @@ label {
 .book-itemClose {
     margin-left: auto;
 }
+
+.book-itemClose > button {
+    border: none;
+    background: none;
+}
