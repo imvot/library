@@ -35,6 +35,15 @@ class Book {
     create() {
         const newBook = getTemplate();
         newBook.id = this.id;
+
+        const readStatusCheckbox = newBook.querySelector(".book-itemCheckbox > input");
+        readStatusCheckbox.checked = this.isRead;
+        const changeChecked = function(e) {
+            this.isRead = e.target.checked;
+            this.update();
+        }.bind(this);
+        readStatusCheckbox.addEventListener("change", changeChecked);
+
         main.appendChild(newBook);
         this.update()
     }
