@@ -6,6 +6,19 @@ function getTemplate() {
 }
 
 const main = document.querySelector("main");
+
+const dialog = document.querySelector("#addBook");
+const addBookButton = document.querySelector(".header-button");
+addBookButton.addEventListener("click", () => dialog.showModal());
+
+const form = document.querySelector(".addBook-form");
+form.addEventListener("submit", e => {
+    const formData = new FormData(e.target);
+    const inputs = Object.fromEntries(formData);
+    new Book(inputs.title, inputs.author, inputs["nb-pages"], inputs["read-status"]);
+
+})
+
 const library = []
 
 class Book {
