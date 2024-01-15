@@ -5,29 +5,13 @@ function getTemplate() {
     return template;
 }
 
-const main = document.querySelector("main");
-
-const dialog = document.querySelector("#addBook");
-const addBookButton = document.querySelector(".header-button");
-addBookButton.addEventListener("click", () => dialog.showModal());
-
-const form = document.querySelector(".addBook-form");
-form.addEventListener("submit", e => {
-    const formData = new FormData(e.target);
-    const inputs = Object.fromEntries(formData);
-    new Book(inputs.title, inputs.author, inputs["nb-pages"], inputs["read-status"]);
-
-})
-
-const library = []
-
 class Book {
-    constructor(title, author, nbPages, isRead) {
+    constructor({title, author, nbPages, isRead, id=library.length}) {
         this.title = title;
         this.author = author;
         this.nbPages = nbPages;
         this.isRead = isRead;
-        this.id = library.length;
+        this.id = id;
         library[this.id] = this;
         this.create()
     }
@@ -64,6 +48,11 @@ class Book {
         nbPages.innerText = `${this.nbPages} pages`;
         const readStatus = book.querySelector(".book-itemStatus");
         readStatus.innerText = this.isRead ? "Read" : "Not Read"
+        this.save();
+    }
+
+    save() {
+        localStorage.setItem("library", JSON.stringify(library));
     }
 
     delete() {
@@ -71,4 +60,30 @@ class Book {
         main.removeChild(book);
         delete library[this.id];
     }
+}
+
+const main = document.querySelector("main");
+
+const dialog = document.querySelector("#addBook");
+const addBookButton = document.querySelector(".header-button");
+addBookButton.addEventListener("click", () => dialog.showModal());
+
+const form = document.querySelector(".addBook-form");
+form.addEventListener("submit", e => {
+    const formData = new FormData(e.target);
+    const inputs = Object.fromEntries(formData);
+    new Book({
+        title: inputs.title,
+        author: inputs.author,
+        nbPages: inputs["nb-pages"],
+        isRead: inputs["read-status"]
+    });
+})
+
+const storageLibrary = localStorage.getItem("library");
+const library = !storageLibrary ? [] : JSON.parse(storageLibrary);
+if(storageLibrary) {
+    library.forEach(bookData => {
+        new Book(bookData) 
+    })
 }
